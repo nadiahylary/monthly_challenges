@@ -76,28 +76,28 @@ OR
 #  from the model & sqlite3 instead of the dictionary.
 
 
-def index_db(request):
-    challenges = Challenge.objects.all()
-    months = [month for month in challenges.objects.value_list('month')]
-    return render(request, "challenges/index.html", {
-        "months": months,
-        "challenges": challenges
-    })
-
-
-def monthly_challenges_db(request, month):
-    challenges = Challenge.objects.all()
-    months = [month for month in challenges.objects.value_list('month')]
-    redirect_month = months[month - 1]
-    redirect_path = reverse("month-challenge", args=[redirect_month])
-    return HttpResponseRedirect(redirect_path)
-
-
-def monthly_challenge_month_db(request, month):
-    try:
-        challenge = Challenge.objects.get(month=month)
-        return render(request, "challenges/challenge.html", {
-            "month": month,
-            "challenge": challenge})
-    except:
-        raise Http404()
+# def index_db(request):
+#     challenges = Challenge.objects.all()
+#     months = [month for month in challenges.objects.value_list('month')]
+#     return render(request, "challenges/index.html", {
+#         "months": months,
+#         "challenges": challenges
+#     })
+#
+#
+# def monthly_challenges_db(request, month):
+#     challenges = Challenge.objects.all()
+#     months = [month for month in challenges.objects.value_list('month')]
+#     redirect_month = months[month - 1]
+#     redirect_path = reverse("month-challenge", args=[redirect_month])
+#     return HttpResponseRedirect(redirect_path)
+#
+#
+# def monthly_challenge_month_db(request, month):
+#     try:
+#         challenge = Challenge.objects.get(month=month)
+#         return render(request, "challenges/challenge.html", {
+#             "month": month,
+#             "challenge": challenge})
+#     except:
+#         raise Http404()
